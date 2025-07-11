@@ -5,7 +5,7 @@ import uuid
 
 def lambda_handler(event, context):
     # URL de la página web que contiene la tabla
-    url = "https://ultimosismo.igp.gob.pe/ultimo-sismo/sismos-reportados"
+    url = "https://ultimosismo.igp.gob.pe/ultimosismo/sismos-reportados"
 
     # Realizar la solicitud HTTP a la página web
     response = requests.get(url)
@@ -14,9 +14,6 @@ def lambda_handler(event, context):
             'statusCode': response.status_code,
             'body': 'Error al acceder a la página web'
         }
-    datos = response.json()
-    ultimos = datos[-10:]
-    ultimos.reverse()
 
     # Parsear el contenido HTML de la página web
     soup = BeautifulSoup(response.content, 'html.parser')
